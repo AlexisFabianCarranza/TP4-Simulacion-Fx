@@ -17,6 +17,9 @@ public class Evento {
     private ArrayList intervalos;
     private double[] probabilidades;
     private ArrayList resultado;
+    
+    
+    public Evento(){}
 
     public Evento(double[] probabilidades, ArrayList resultado) {
         this.intervalos = new ArrayList();
