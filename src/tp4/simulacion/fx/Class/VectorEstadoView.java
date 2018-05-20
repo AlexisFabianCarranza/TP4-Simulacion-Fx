@@ -57,128 +57,128 @@ public class VectorEstadoView {
         this.bda = new SimpleIntegerProperty(v.getBda());
     }
 
-    public SimpleIntegerProperty getReloj() {
-        return reloj;
+    public Integer getReloj() {
+        return reloj.get();
     }
 
     public void setReloj(SimpleIntegerProperty reloj) {
         this.reloj = reloj;
     }
 
-    public SimpleDoubleProperty getRndDemanda() {
-        return rndDemanda;
+    public double getRndDemanda() {
+        return rndDemanda.get();
     }
 
     public void setRndDemanda(SimpleDoubleProperty rndDemanda) {
         this.rndDemanda = rndDemanda;
     }
 
-    public SimpleIntegerProperty getDemanda() {
-        return demanda;
+    public int getDemanda() {
+        return demanda.get();
     }
 
     public void setDemanda(SimpleIntegerProperty demanda) {
         this.demanda = demanda;
     }
 
-    public SimpleDoubleProperty getRndDemora() {
-        return rndDemora;
+    public double getRndDemora() {
+        return rndDemora.get();
     }
 
     public void setRndDemora(SimpleDoubleProperty rndDemora) {
         this.rndDemora = rndDemora;
     }
 
-    public SimpleIntegerProperty getDemora() {
-        return demora;
+    public int getDemora() {
+        return demora.get();
     }
 
     public void setDemora(SimpleIntegerProperty demora) {
         this.demora = demora;
     }
 
-    public SimpleDoubleProperty getRndBiciDañada() {
-        return rndBiciDañada;
+    public double getRndBiciDañada() {
+        return rndBiciDañada.get();
     }
 
     public void setRndBiciDañada(SimpleDoubleProperty rndBiciDañada) {
         this.rndBiciDañada = rndBiciDañada;
     }
 
-    public SimpleIntegerProperty getBiciDañada() {
-        return biciDañada;
+    public int getBiciDañada() {
+        return biciDañada.get();
     }
 
     public void setBiciDañada(SimpleIntegerProperty biciDañada) {
         this.biciDañada = biciDañada;
     }
 
-    public SimpleIntegerProperty getOrden() {
-        return orden;
+    public int getOrden() {
+        return orden.get();
     }
 
     public void setOrden(SimpleIntegerProperty orden) {
         this.orden = orden;
     }
 
-    public SimpleIntegerProperty getLlegadaPedido() {
-        return llegadaPedido;
+    public int getLlegadaPedido() {
+        return llegadaPedido.get();
     }
 
     public void setLlegadaPedido(SimpleIntegerProperty llegadaPedido) {
         this.llegadaPedido = llegadaPedido;
     }
 
-    public SimpleIntegerProperty getStock() {
-        return stock;
+    public int getStock() {
+        return stock.get();
     }
 
     public void setStock(SimpleIntegerProperty stock) {
         this.stock = stock;
     }
 
-    public SimpleDoubleProperty getKm() {
-        return km;
+    public double getKm() {
+        return km.get();
     }
 
     public void setKm(SimpleDoubleProperty km) {
         this.km = km;
     }
 
-    public SimpleDoubleProperty getKo() {
-        return ko;
+    public double getKo() {
+        return ko.get();
     }
 
     public void setKo(SimpleDoubleProperty ko) {
         this.ko = ko;
     }
 
-    public SimpleDoubleProperty getKs() {
-        return ks;
+    public double getKs() {
+        return ks.get();
     }
 
     public void setKs(SimpleDoubleProperty ks) {
         this.ks = ks;
     }
 
-    public SimpleDoubleProperty getKt() {
-        return kt;
+    public double getKt() {
+        return kt.get();
     }
 
     public void setKt(SimpleDoubleProperty kt) {
         this.kt = kt;
     }
 
-    public SimpleDoubleProperty getKta() {
-        return kta;
+    public double getKta() {
+        return kta.get();
     }
 
     public void setKta(SimpleDoubleProperty kta) {
         this.kta = kta;
     }
 
-    public SimpleIntegerProperty getBda() {
-        return bda;
+    public int getBda() {
+        return bda.get();
     }
 
     public void setBda(SimpleIntegerProperty bda) {
