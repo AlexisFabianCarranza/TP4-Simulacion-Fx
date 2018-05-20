@@ -87,10 +87,7 @@ public class Simulador {
         
         this.reloj = this.vectorEstadoActual.getReloj() + 1; //nueva posicion del reloj
         
-        if (this.reloj >= this.mostrarDesde && this.reloj <= this.mostrarHasta) {
-            VectorEstadoView v = new VectorEstadoView(this.vectorEstadoActual);
-            this.estados.add(v);
-        }
+        
         
         
         int stock = this.vectorEstadoActual.getStock(); 
@@ -161,7 +158,11 @@ public class Simulador {
         
         this.vectorEstadoAnterior = this.vectorEstadoActual;
         this.vectorEstadoActual = new VectorEstado(reloj, rndDemanda, demanda, rndDemora, demora, rndBiciDañada, biciDañada, orden, llegadaPedido, stock, ko, km, ks, ct, cta, bda);
-            
+        
+        if (this.reloj >= this.mostrarDesde && this.reloj <= this.mostrarHasta) {
+            VectorEstadoView v = new VectorEstadoView(this.vectorEstadoActual);
+            this.estados.add(v);
+        }
         
         
         
@@ -169,7 +170,9 @@ public class Simulador {
     
     public double costoPromedio(){
         double cta = this.vectorEstadoActual.getCta();
-        return (cta/ (double) this.reloj);
+        double promedio = cta / (double) this.reloj;
+        promedio = Math.round(promedio*100.0) /100.0;
+        return promedio;
     }
     
     public int cantidadBicisDañadas(){

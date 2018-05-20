@@ -12,6 +12,8 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -80,7 +82,7 @@ public class FXMLDocumentController implements Initializable {
     
     private Simulador simulador;
     private ObservableList<VectorEstadoView> estados;
-    
+    private Boolean simulado = false;
     
     
     @Override
@@ -145,9 +147,47 @@ public class FXMLDocumentController implements Initializable {
 
         Evento biciDañada = new Evento(probabilidades, rs);
         
-        int cantidadSimulaciones = Integer.valueOf(this.txtCantidadSimulacion.textProperty().get());
-        int desde = Integer.valueOf(this.txtDesde.textProperty().get());
-        int hasta = Integer.valueOf(this.txtHasta.textProperty().get());
+        int cantidadSimulaciones, desde, hasta;
+        
+        
+        try {
+            cantidadSimulaciones = Integer.valueOf(this.txtCantidadSimulacion.textProperty().get());
+            desde = Integer.valueOf(this.txtDesde.textProperty().get());
+            hasta = Integer.valueOf(this.txtHasta.textProperty().get());
+            
+        }
+        catch (NumberFormatException e){
+            Alert dialog = new Alert(AlertType.INFORMATION);
+            dialog.setTitle("ERROR");
+            dialog.setHeaderText("Los campos deben estár completos y ser de valores numéricos enteros");
+            dialog.showAndWait();
+            return;
+        }
+        
+        if (cantidadSimulaciones <= 0) {
+            Alert dialog = new Alert(AlertType.INFORMATION);
+            dialog.setTitle("ERROR");
+            dialog.setHeaderText("La cantidad de simulaciones debe ser mayor o igual a 1");
+            dialog.showAndWait();
+            return;
+        }
+        
+        if (desde >= hasta ) {
+            Alert dialog = new Alert(AlertType.INFORMATION);
+            dialog.setTitle("ERROR");
+            dialog.setHeaderText("El valor de 'Desde' debe ser menor que el valor de 'Hasta'");
+            dialog.showAndWait();
+            return;
+        }
+        
+        if (desde < 0 || hasta < 0) {
+            Alert dialog = new Alert(AlertType.INFORMATION);
+            dialog.setTitle("ERROR");
+            dialog.setHeaderText("No pueden cargarse valores negativos");
+            dialog.showAndWait();
+            return;
+        }
+        
         
         simulador = new Simulador(demanda, demora, biciDañada, desde, hasta);
 
@@ -160,10 +200,55 @@ public class FXMLDocumentController implements Initializable {
         
         this.tablaVectorEstado.setItems(estados);
         
+        this.simulado = true;
         
+        Alert dialog = new Alert(AlertType.INFORMATION);
+        dialog.setTitle("FINALIZADA");
+        dialog.setHeaderText("La simulación ha finalizado con éxito");
+        dialog.showAndWait();
     
     
     
+    }
+
+    @FXML
+    private void btnCostoPromedioClick(ActionEvent event) {
+        
+        if (!simulado) {
+            Alert dialog = new Alert(AlertType.INFORMATION);
+            dialog.setTitle("ERROR");
+            dialog.setHeaderText("Primero debe ejecutar una simulación");
+            dialog.showAndWait();
+            return;
+        }
+        
+        double costoPromedio = this.simulador.costoPromedio();
+        
+        Alert dialog = new Alert(AlertType.INFORMATION);
+        dialog.setHeaderText("El costo promedio semanal es de " + costoPromedio + "$");
+        dialog.showAndWait();
+        
+    }
+
+    @FXML
+    private void btnBicisDañadasClick(ActionEvent event) {
+        
+        if (!simulado) {
+            Alert dialog = new Alert(AlertType.INFORMATION);
+            dialog.setTitle("ERROR");
+            dialog.setHeaderText("Primero debe ejecutar una simulación");
+            dialog.showAndWait();
+            return;
+        }
+        
+        int bicisDañadas = this.simulador.cantidadBicisDañadas();
+        
+        Alert dialog = new Alert(AlertType.INFORMATION);
+        dialog.setHeaderText("La cantidad de bicis dañadas en el total de pedidos es de " + bicisDañadas);
+        dialog.setTitle("BIcicletas dañadas");
+        dialog.showAndWait();
+        
+        
     }
     
 }
