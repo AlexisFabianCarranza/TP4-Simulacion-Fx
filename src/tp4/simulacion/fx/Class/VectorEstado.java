@@ -5,283 +5,205 @@
  */
 package tp4.simulacion.fx.Class;
 
-import java.util.HashSet;
-import java.util.Random;
-import java.util.Set;
-import javafx.beans.property.*;
-
 /**
  *
  * @author nicolastomassi
  */
 public class VectorEstado {
-
-    private SimpleIntegerProperty reloj; //reloj de simulacion
-    private SimpleDoubleProperty rndDemanda; //rnd para generar demanda
-    private SimpleIntegerProperty demanda; // demanda generada
-    private SimpleDoubleProperty rndDemora; //rnd para generar tiempo de demora de un pedido
-    private SimpleIntegerProperty demora; // tiempo de demora de un pedido
-    private SimpleDoubleProperty rndBiciDañada; // rnd para saber si viene una bici dañada en el pedido
-    private SimpleIntegerProperty biciDañada; // viene o no bici dañaada en pedido
-    private SimpleIntegerProperty orden; // tiempo en que se genero un pedido
-    private SimpleIntegerProperty llegadaPedido; // tiempo en que llegará el pedido
-    private SimpleIntegerProperty stock; // stock actual
-    private SimpleDoubleProperty km; // costo de mantenimiento por bici
-    private SimpleDoubleProperty ko; // costo de pedido
-    private SimpleDoubleProperty ks; // costo de stock out
-    private SimpleDoubleProperty kt; // costo total de una simulacion (ks+km+ko)
-    private SimpleDoubleProperty kta; // costo total acumulado de todas las simulaciones
-    private SimpleIntegerProperty bda; // acumulador de bicis dañadas
-    private SimpleIntegerProperty so; // stock inicial
-    private SimpleIntegerProperty q; // cantidad de bicis solicitadas en un pedido
-    private SimpleIntegerProperty r; // punto de reposicion
     
-    private Evento demandaEvento;
-    private Evento demoraEvento;
-    private Evento biciDañadaEvento;
+    private int reloj;
+    private double rndDemanda;
+    private int demanda;
+    private double rndDemora;
+    private int demora;
+    private double rndBiciDañada;
+    private int biciDañada;
+    private int orden;
+    private int llegadaPedido;
+    private int stock;
+    private double ko;
+    private double km;
+    private double ks;
+    private double ct;
+    private double cta;
+    private int bda;
     
-    private VectorEstado estadoAnterior;
+    public VectorEstado(int reloj, double rndDemanda, int demanda, double rndDemora, int demora, double rndDañada, int dañada, int orden, int llPedido, int stock, double ko, double km, double ks, double ct, double cta, int contDañada){
+        this.reloj = reloj;
+        this.rndBiciDañada = rndDañada;
+        this.rndDemanda = rndDemanda;
+        this.rndDemora = rndDemora;
+        this.biciDañada = dañada;
+        this.demanda = demanda;
+        this.demora = demora;
+        this.orden = orden;
+        this.llegadaPedido = llPedido;
+        this.stock = stock;
+        this.ko = ko;
+        this.km = km;
+        this.ks = ks;
+        this.ct = ct;
+        this.cta = cta;
+        this.bda = contDañada;
+    }
     
-    
+    public VectorEstadoView vista(){
+        VectorEstadoView v = new VectorEstadoView(this);
+        return v;
+    }
     
     public VectorEstado(){
-        this.biciDañadaEvento = new Evento();
-        this.demandaEvento = new Evento();
-        this.demoraEvento = new Evento();
-        this.reloj = new SimpleIntegerProperty(0);
-        this.so = new SimpleIntegerProperty(7);
-        this.q = new SimpleIntegerProperty(6);
-        this.r = new SimpleIntegerProperty(2);
-        this.km = new SimpleDoubleProperty(3);
-        this.ks = new SimpleDoubleProperty(5);
-        this.ko = new SimpleDoubleProperty(20);
-        this.stock = new SimpleIntegerProperty(7);
+        this.reloj = 0;
     }
     
-    public VectorEstado(VectorEstado viejo){
-        this.biciDañadaEvento = viejo.biciDañadaEvento;
-        this.demoraEvento = viejo.demoraEvento;
-        this.demandaEvento = viejo.demandaEvento;
-        this.q = viejo.getQ();
-        this.r = viejo.getR();
-        this.bda = viejo.getBda();
-        this.km = viejo.getKm();
-        this.ko = viejo.getKo();
-        this.ks = 
-        
-    }
-    
-    public VectorEstado(int so, int q, int r, double km, double ks, double ko){
-        
-        this.biciDañadaEvento = new Evento();
-        this.demandaEvento = new Evento();
-        this.demoraEvento = new Evento();
-        this.reloj = new SimpleIntegerProperty(0);
-        this.so = new SimpleIntegerProperty(so);
-        this.q = new SimpleIntegerProperty(q);
-        this.r = new SimpleIntegerProperty(r);
-        this.km = new SimpleDoubleProperty(km);
-        this.ks = new SimpleDoubleProperty(ks);
-        this.ko = new SimpleDoubleProperty(ko);
-        this.stock = new SimpleIntegerProperty(so);
-    }
-    
-    public void simular(){
-        Random rnd = new Random();
-        double random = rnd.nextDouble();
-        
-        this.setRndDemanda(random);
-        this.setDemanda(this.demandaEvento.getResultado(random));
-        
-        
-        if (this.demanda.get() < this.stock.get()) {
-            
-        }
-        else {
-            
-        }
-                
-        
-        
+    public VectorEstado(int reloj){
+        this.reloj = reloj;
     }
 
-    
-        
-    
-
-    
-    
-    
-    
-    
-    public Evento getDemandaEvento() {
-        return demandaEvento;
-    }
-
-    public Evento getDemoraEvento() {
-        return demoraEvento;
-    }
-
-    public Evento getBiciDañadaEvento() {
-        return biciDañadaEvento;
-    }
-
-    public VectorEstado getEstadoAnterior() {
-        return estadoAnterior;
-    }
-    
-    public SimpleIntegerProperty getReloj() {
+    public int getReloj() {
         return reloj;
     }
 
     public void setReloj(int reloj) {
-        this.reloj = new SimpleIntegerProperty(reloj);
+        this.reloj = reloj;
     }
 
-    public SimpleDoubleProperty getRndDemanda() {
+    public double getRndDemanda() {
         return rndDemanda;
     }
 
     public void setRndDemanda(double rndDemanda) {
-        this.rndDemanda = new SimpleDoubleProperty(rndDemanda);
+        this.rndDemanda = rndDemanda;
     }
 
-    public SimpleIntegerProperty getDemanda() {
+    public int getDemanda() {
         return demanda;
     }
 
     public void setDemanda(int demanda) {
-        this.demanda = new SimpleIntegerProperty(demanda);
+        this.demanda = demanda;
     }
 
-    public SimpleDoubleProperty getRndDemora() {
+    public double getRndDemora() {
         return rndDemora;
     }
 
     public void setRndDemora(double rndDemora) {
-        this.rndDemora = new SimpleDoubleProperty(rndDemora);
+        this.rndDemora = rndDemora;
     }
 
-    public SimpleIntegerProperty getDemora() {
+    public int getDemora() {
         return demora;
     }
 
     public void setDemora(int demora) {
-        this.demora = new SimpleIntegerProperty(demora);
+        this.demora = demora;
     }
 
-    public SimpleDoubleProperty getRndBiciDañada() {
+    public double getRndBiciDañada() {
         return rndBiciDañada;
     }
 
     public void setRndBiciDañada(double rndBiciDañada) {
-        this.rndBiciDañada = new SimpleDoubleProperty(rndBiciDañada);
+        this.rndBiciDañada = rndBiciDañada;
     }
 
-    public SimpleIntegerProperty getBiciDañada() {
+    public int getBiciDañada() {
         return biciDañada;
     }
 
     public void setBiciDañada(int biciDañada) {
-        this.biciDañada = new SimpleIntegerProperty(biciDañada);
+        this.biciDañada = biciDañada;
     }
 
-    public SimpleIntegerProperty getOrden() {
+    public int getOrden() {
         return orden;
     }
 
     public void setOrden(int orden) {
-        this.orden = new SimpleIntegerProperty(orden);
+        this.orden = orden;
     }
 
-    public SimpleIntegerProperty getLlegadaPedido() {
+    public int getLlegadaPedido() {
         return llegadaPedido;
     }
 
     public void setLlegadaPedido(int llegadaPedido) {
-        this.llegadaPedido = new SimpleIntegerProperty(llegadaPedido);
+        this.llegadaPedido = llegadaPedido;
     }
 
-    public SimpleIntegerProperty getStock() {
+    public int getStock() {
         return stock;
     }
 
     public void setStock(int stock) {
-        this.stock = new SimpleIntegerProperty(stock);
+        this.stock = stock;
     }
 
-    public SimpleDoubleProperty getKm() {
-        return km;
-    }
-
-    public void setKm(SimpleDoubleProperty km) {
-        this.km = km;
-    }
-
-    public SimpleDoubleProperty getKo() {
+    public double getKo() {
         return ko;
     }
 
-    public void setKo(SimpleDoubleProperty ko) {
+    public void setKo(double ko) {
         this.ko = ko;
     }
 
-    public SimpleDoubleProperty getKs() {
+    public double getKm() {
+        return km;
+    }
+
+    public void setKm(double km) {
+        this.km = km;
+    }
+
+    public double getKs() {
         return ks;
     }
 
-    public void setKs(SimpleDoubleProperty ks) {
+    public void setKs(double ks) {
         this.ks = ks;
     }
 
-    public SimpleDoubleProperty getKt() {
-        return kt;
+    public double getCt() {
+        return ct;
     }
 
-    public void setKt(SimpleDoubleProperty kt) {
-        this.kt = kt;
+    public void setCt(double ct) {
+        this.ct = ct;
     }
 
-    public SimpleDoubleProperty getKta() {
-        return kta;
+    public double getCta() {
+        return cta;
     }
 
-    public void setKta(double kta) {
-        this.kta = new SimpleDoubleProperty(kta);
+    public void setCta(double cta) {
+        this.cta = cta;
     }
 
-    public SimpleIntegerProperty getBda() {
+    public int getBda() {
         return bda;
     }
 
     public void setBda(int bda) {
-        this.bda = new SimpleIntegerProperty(bda);
-    }
-
-    public SimpleIntegerProperty getSo() {
-        return so;
-    }
-
-    public void setSo(int so) {
-        this.so = new SimpleIntegerProperty(so);
-    }
-
-    public SimpleIntegerProperty getQ() {
-        return q;
-    }
-
-    public void setQ(int q) {
-        this.q = new SimpleIntegerProperty(q);
-    }
-
-    public SimpleIntegerProperty getR() {
-        return r;
-    }
-
-    public void setR(int r) {
-        this.r = new SimpleIntegerProperty(r);
+        this.bda = bda;
     }
     
     
+    @Override
+    public String toString(){
+        
+        double rnd1 = Math.round(this.rndDemanda*100.0) / 100.0;
+        double rnd2 = Math.round(this.rndDemora*100.0) / 100.0;
+        double rnd3 = Math.round(this.rndBiciDañada*100.0) / 100.0;
+        double kta = Math.round(this.cta*100.0) / 100.0;
+        
+        
+        
+        String s = "Reloj: " + this.reloj + " - RND: " + rnd1 + " Demanda: " + this.demanda;
+        s += " - RND: " + rnd2 + " Demora: " + this.demora +  " - RND: " + rnd3 + " BiciDañada: " + this.biciDañada;
+        s += " - Orden: " + this.orden + " LLegadaPedido: " + this.llegadaPedido + " Stock: " + this.stock + " - ko: ";
+        s +=  this.ko + " km: " + this.km + " ks: " + this.ks + " CT: " + this.ct + " CTA: " + kta + " BDA: " + this.bda;
+        return s;
+    }
     
 }
