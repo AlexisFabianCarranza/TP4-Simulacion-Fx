@@ -29,6 +29,8 @@ public class main {
         
         Evento demanda = new Evento(probabilidades, rs);
         
+        System.out.println("intervalos demanda::: " + demanda.toString());
+        
         probabilidades = new double[3];
         probabilidades[0] = 0.3;
         probabilidades[1] = 0.4;
@@ -41,6 +43,8 @@ public class main {
         
         Evento demora = new Evento(probabilidades, rs);
         
+        System.out.println("intervalos demora:: " + demora.toString());
+        
         probabilidades = new double[2];
         probabilidades[0] = 0.7;
         probabilidades[1] = 0.3;
@@ -50,6 +54,7 @@ public class main {
         rs.add(1);
         
         Evento biciDañada = new Evento(probabilidades, rs);
+        System.out.println("intervalos biciDañada:: " + biciDañada.toString());
         
         Simulador sim = new Simulador(demanda, demora, biciDañada);
         

@@ -76,7 +76,7 @@ public class Simulador {
         
         Random generador = new Random();
         
-        double rndDemanda = generador.nextDouble();
+        double rndDemanda = Math.round(generador.nextDouble()*100.0) / 100.0;
         int demanda = this.demanda.getResultado(rndDemanda); // genera demanda
         
         
@@ -97,9 +97,9 @@ public class Simulador {
         double rndDemora = -1, rndBiciDañada = -1;
         
         if (stock <= r) {
-            rndDemora = generador.nextDouble();
+            rndDemora = Math.round(generador.nextDouble() * 100.0) / 100.0;
             demora = this.demora.getResultado(rndDemora);
-            rndBiciDañada = generador.nextDouble();
+            rndBiciDañada = Math.round(generador.nextDouble()*100.0)/100.0;
             biciDañada = this.biciDañada.getResultado(rndBiciDañada);
             orden = reloj;
             llegadaPedido = reloj + demora;
