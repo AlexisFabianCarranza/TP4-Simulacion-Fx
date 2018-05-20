@@ -81,49 +81,87 @@ public class VectorEstadoView {
         this.demanda = demanda;
     }
 
-    public double getRndDemora() {
-        return rndDemora.get();
+    public String getRndDemora() {
+        if (this.rndDemora.get() == -1) {
+            return "";
+        }
+        return String.valueOf(rndDemora.get());
     }
+//    public double getRndDemora() {
+//        return rndDemora.get();
+//    }
 
     public void setRndDemora(SimpleDoubleProperty rndDemora) {
         this.rndDemora = rndDemora;
     }
 
-    public int getDemora() {
-        return demora.get();
+    public String getDemora() {
+        if (this.demora.get() == -1) {
+            return "";
+        }
+        return String.valueOf(demora.get());
     }
+//    public int getDemora() {
+//        return demora.get();
+//    }
 
     public void setDemora(SimpleIntegerProperty demora) {
         this.demora = demora;
     }
 
-    public double getRndBiciDañada() {
-        return rndBiciDañada.get();
+    public String getRndBiciDañada() {
+        if (this.rndBiciDañada.get() == -1) {
+            return "";
+        }
+        return String.valueOf(rndBiciDañada.get());
     }
+//    public double getRndBiciDañada() {
+//        return rndBiciDañada.get();
+//    }
 
     public void setRndBiciDañada(SimpleDoubleProperty rndBiciDañada) {
         this.rndBiciDañada = rndBiciDañada;
     }
 
-    public int getBiciDañada() {
-        return biciDañada.get();
+    public String getBiciDañada() {
+        if (this.rndBiciDañada.get() == -1) {
+            return "";
+        }
+        return String.valueOf(biciDañada.get());
     }
+//    public int getBiciDañada() {
+//        return biciDañada.get();
+//    }
 
     public void setBiciDañada(SimpleIntegerProperty biciDañada) {
         this.biciDañada = biciDañada;
     }
 
-    public int getOrden() {
-        return orden.get();
+    public String getOrden() {
+        if (this.orden.get() == -1) {
+            return "";
+        }
+        
+        return String.valueOf(orden.get());
     }
+//    public int getOrden() {
+//        return orden.get();
+//    }
 
     public void setOrden(SimpleIntegerProperty orden) {
         this.orden = orden;
     }
 
-    public int getLlegadaPedido() {
-        return llegadaPedido.get();
+    public String getLlegadaPedido() {
+        if (this.llegadaPedido.get() == -1) {
+            return "";
+        }
+        
+        return String.valueOf(llegadaPedido.get());
     }
+//    public int getLlegadaPedido() {
+//        return llegadaPedido.get();
+//    }
 
     public void setLlegadaPedido(SimpleIntegerProperty llegadaPedido) {
         this.llegadaPedido = llegadaPedido;
