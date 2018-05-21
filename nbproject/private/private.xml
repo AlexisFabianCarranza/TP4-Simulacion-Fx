@@ -4,10 +4,11 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/home/nicolastomassi/NetBeansProjects/TP4-Simulacion-Fx/src/tp4/simulacion/fx/Class/VectorEstado.java</file>
-            <file>file:/home/nicolastomassi/NetBeansProjects/TP4-Simulacion-Fx/src/tp4/simulacion/fx/Class/Evento.java</file>
-            <file>file:/home/nicolastomassi/NetBeansProjects/TP4-Simulacion-Fx/src/tp4/simulacion/fx/Class/VectorEstadoCalculo.java</file>
+            <file>file:/home/nicolastomassi/NetBeansProjects/TP4-Simulacion-Fx/src/tp4/simulacion/fx/TP4SimulacionFX.java</file>
+            <file>file:/home/nicolastomassi/NetBeansProjects/TP4-Simulacion-Fx/src/tp4/simulacion/fx/FXMLDocumentController.java</file>
+            <file>file:/home/nicolastomassi/NetBeansProjects/TP4-Simulacion-Fx/src/tp4/simulacion/fx/Class/main.java</file>
+            <file>file:/home/nicolastomassi/NetBeansProjects/TP4-Simulacion-Fx/src/tp4/simulacion/fx/Class/VectorEstadoView.java</file>
             <file>file:/home/nicolastomassi/NetBeansProjects/TP4-Simulacion-Fx/src/tp4/simulacion/fx/Class/Simulador.java</file>
-            <file>file:/home/nicolastomassi/NetBeansProjects/TP4-Simulacion-Fx/src/tp4/simulacion/fx/Class/Costo.java</file>
         </group>
     </open-files>
 </project-private>
