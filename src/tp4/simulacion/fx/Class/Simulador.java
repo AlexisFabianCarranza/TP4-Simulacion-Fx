@@ -59,7 +59,7 @@ public class Simulador {
         
     }
     
-    public Simulador(double kmu, double ksu, double ko, int so, int q, int r, int desde, int hasta){
+    public Simulador(Evento demanda, Evento demora, Evento biciDañada, int desde, int hasta, double kmu, double ksu, double ko, int so, int q, int r){
         this.vectorEstadoActual = new VectorEstado();
         this.vectorEstadoAnterior = new VectorEstado();
         this.kmu = kmu;

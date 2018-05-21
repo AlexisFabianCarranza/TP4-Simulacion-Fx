@@ -32,8 +32,6 @@ import tp4.simulacion.fx.Class.VectorEstadoView;
 public class FXMLDocumentController implements Initializable {
     
     @FXML
-    private Button btnParametrizar;
-    @FXML
     private TextField txtCantidadSimulacion;
     @FXML
     private TextField txtDesde;
@@ -50,17 +48,29 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private TableColumn<VectorEstadoView, Integer> columnDemanda;
     @FXML
-    private TableColumn<VectorEstadoView, Double> columnRndTiempoEntrega;
+    private TableColumn<VectorEstadoView, String> columnRndTiempoEntrega;
     @FXML
-    private TableColumn<VectorEstadoView, Integer> columnTiempoEntrega;
+    private TableColumn<VectorEstadoView, String> columnTiempoEntrega;
     @FXML
-    private TableColumn<VectorEstadoView, Double> columnRndDañada;
+    private TableColumn<VectorEstadoView, String> columnRndDañada;
     @FXML
-    private TableColumn<VectorEstadoView, Integer> columnDañada;
+    private TableColumn<VectorEstadoView, String> columnDañada;
     @FXML
-    private TableColumn<VectorEstadoView, Integer> columnOrden;
+    private TableColumn<VectorEstadoView, String> columnOrden;
     @FXML
-    private TableColumn<VectorEstadoView, Integer> columnLlegadaPedido;
+    private TableColumn<VectorEstadoView, String> columnLlegadaPedido;
+//    @FXML
+//    private TableColumn<VectorEstadoView, Double> columnRndTiempoEntrega;
+//    @FXML
+//    private TableColumn<VectorEstadoView, Integer> columnTiempoEntrega;
+//    @FXML
+//    private TableColumn<VectorEstadoView, Double> columnRndDañada;
+//    @FXML
+//    private TableColumn<VectorEstadoView, Integer> columnDañada;
+//    @FXML
+//    private TableColumn<VectorEstadoView, Integer> columnOrden;
+//    @FXML
+//    private TableColumn<VectorEstadoView, Integer> columnLlegadaPedido;
     @FXML
     private TableColumn<VectorEstadoView, Integer> columnStock;
     @FXML
@@ -83,6 +93,24 @@ public class FXMLDocumentController implements Initializable {
     private Simulador simulador;
     private ObservableList<VectorEstadoView> estados;
     private Boolean simulado = false;
+    private int cantidadSimulaciones, desde, hasta, so, q, r;
+    private double km, ko, ks;
+    
+    
+    
+    
+    @FXML
+    private TextField txtSo;
+    @FXML
+    private TextField txtR;
+    @FXML
+    private TextField txtQ;
+    @FXML
+    private TextField txtKs;
+    @FXML
+    private TextField txtKo;
+    @FXML
+    private TextField txtKm;
     
     
     @Override
@@ -147,49 +175,13 @@ public class FXMLDocumentController implements Initializable {
 
         Evento biciDañada = new Evento(probabilidades, rs);
         
-        int cantidadSimulaciones, desde, hasta;
         
-        
-        try {
-            cantidadSimulaciones = Integer.valueOf(this.txtCantidadSimulacion.textProperty().get());
-            desde = Integer.valueOf(this.txtDesde.textProperty().get());
-            hasta = Integer.valueOf(this.txtHasta.textProperty().get());
-            
-        }
-        catch (NumberFormatException e){
-            Alert dialog = new Alert(AlertType.INFORMATION);
-            dialog.setTitle("ERROR");
-            dialog.setHeaderText("Los campos deben estár completos y ser de valores numéricos enteros");
-            dialog.showAndWait();
-            return;
-        }
-        
-        if (cantidadSimulaciones <= 0) {
-            Alert dialog = new Alert(AlertType.INFORMATION);
-            dialog.setTitle("ERROR");
-            dialog.setHeaderText("La cantidad de simulaciones debe ser mayor o igual a 1");
-            dialog.showAndWait();
-            return;
-        }
-        
-        if (desde >= hasta ) {
-            Alert dialog = new Alert(AlertType.INFORMATION);
-            dialog.setTitle("ERROR");
-            dialog.setHeaderText("El valor de 'Desde' debe ser menor que el valor de 'Hasta'");
-            dialog.showAndWait();
-            return;
-        }
-        
-        if (desde < 0 || hasta < 0) {
-            Alert dialog = new Alert(AlertType.INFORMATION);
-            dialog.setTitle("ERROR");
-            dialog.setHeaderText("No pueden cargarse valores negativos");
-            dialog.showAndWait();
+        if (!this.validarDatos()) {
             return;
         }
         
         
-        simulador = new Simulador(demanda, demora, biciDañada, desde, hasta);
+        simulador = new Simulador(demanda, demora, biciDañada, desde, hasta, km, ks, ko, so, q, r);
 
         for (int i = 0; i < cantidadSimulaciones; i++) {
             simulador.simular();
@@ -249,6 +241,89 @@ public class FXMLDocumentController implements Initializable {
         dialog.showAndWait();
         
         
+    }
+    
+    private Boolean validarDatos(){
+        
+        try {
+            cantidadSimulaciones = Integer.valueOf(this.txtCantidadSimulacion.textProperty().get());
+            desde = Integer.valueOf(this.txtDesde.textProperty().get());
+            hasta = Integer.valueOf(this.txtHasta.textProperty().get());
+            so = Integer.valueOf(this.txtSo.textProperty().get());
+            q = Integer.valueOf(this.txtQ.textProperty().get());
+            r = Integer.valueOf(this.txtR.textProperty().get());
+            km = Double.valueOf(this.txtKm.textProperty().get());
+            ko = Double.valueOf(this.txtKo.textProperty().get());
+            ks = Double.valueOf(this.txtKs.textProperty().get());
+            
+        }
+        catch (NumberFormatException e){
+            Alert dialog = new Alert(AlertType.INFORMATION);
+            dialog.setTitle("ERROR");
+            dialog.setHeaderText("Los campos deben estár completos y ser de valores numéricos enteros");
+            dialog.showAndWait();
+            return false;
+        }
+        
+        if (cantidadSimulaciones <= 0 ) {
+            Alert dialog = new Alert(AlertType.INFORMATION);
+            dialog.setTitle("ERROR");
+            dialog.setHeaderText("La cantidad de simulaciones debe ser mayor o igual a 1");
+            dialog.showAndWait();
+            return false;
+        }
+        
+        if (so < 0) {
+            Alert dialog = new Alert(AlertType.INFORMATION);
+            dialog.setTitle("ERROR");
+            dialog.setHeaderText("Stock inicial debe ser mayor o igual a 0");
+            dialog.showAndWait();
+            return false;
+        }
+        
+        if (q <= 0 ) {
+            Alert dialog = new Alert(AlertType.INFORMATION);
+            dialog.setTitle("ERROR");
+            dialog.setHeaderText("Cantidad de unidades de reposicion debe ser mayor o igual a 1");
+            dialog.showAndWait();
+            return false;
+        }
+        
+        if (r < 0) {
+            Alert dialog = new Alert(AlertType.INFORMATION);
+            dialog.setTitle("ERROR");
+            dialog.setHeaderText("El punto de reposición debe ser mayor o igual a 0");
+            dialog.showAndWait();
+            return false;
+        }
+        
+        if (desde >= hasta ) {
+            Alert dialog = new Alert(AlertType.INFORMATION);
+            dialog.setTitle("ERROR");
+            dialog.setHeaderText("El valor de 'Desde' debe ser menor que el valor de 'Hasta'");
+            dialog.showAndWait();
+            return false;
+        }
+        
+        if (desde < 0 || hasta < 0) {
+            Alert dialog = new Alert(AlertType.INFORMATION);
+            dialog.setTitle("ERROR");
+            dialog.setHeaderText("No pueden cargarse valores negativos");
+            dialog.showAndWait();
+            return false;
+        }
+        
+        
+              
+        if (ks <= 0 || km <= 0 || ko <= 0) {
+            Alert dialog = new Alert(AlertType.INFORMATION);
+            dialog.setTitle("ERROR");
+            dialog.setHeaderText("Los costos deben ser mayores o iguales a 1");
+            dialog.showAndWait();
+            return false;
+        }
+        
+        return true;
     }
     
 }

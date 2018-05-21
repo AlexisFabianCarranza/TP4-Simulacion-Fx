@@ -6,25 +6,26 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="808.0" prefWidth="1166.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tp4.simulacion.fx.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="808.0" prefWidth="1166.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tp4.simulacion.fx.FXMLDocumentController">
     <children>
-      <Button id="btnParametrizar" fx:id="btnParametrizar" layoutX="932.0" layoutY="21.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="109.0" text="Parámetrizar" />
-      <TextField id="txtCantidadSimulacion" fx:id="txtCantidadSimulacion" layoutX="231.0" layoutY="43.0" prefHeight="0.0" prefWidth="226.0" />
-      <Label layoutX="58.0" layoutY="47.0" text="Cantidad de simulaciones:">
+      <TextField id="txtCantidadSimulacion" fx:id="txtCantidadSimulacion" layoutX="704.0" layoutY="53.0" prefHeight="0.0" prefWidth="226.0" />
+      <Label layoutX="528.0" layoutY="57.0" text="Cantidad de simulaciones:">
       </Label>
-      <TextField id="txtDesde" fx:id="txtDesde" layoutX="119.0" layoutY="105.0" prefHeight="26.0" prefWidth="94.0" />
-      <Label layoutX="58.0" layoutY="78.0" text="Mostrar filas del vectores estado">
+      <TextField id="txtDesde" fx:id="txtDesde" layoutX="646.0" layoutY="118.0" prefHeight="26.0" prefWidth="94.0" />
+      <Label layoutX="521.0" layoutY="95.0" text="Mostrar filas del vectores estado">
       
       </Label>
-      <Label layoutX="58.0" layoutY="108.0" text="Desde:">
+      <Label layoutX="578.0" layoutY="122.0" text="Desde:">
       
       </Label>
-      <Label layoutX="231.0" layoutY="108.0" text="Hasta:">
+      <Label layoutX="778.0" layoutY="122.0" text="Hasta:">
          
       </Label>
-      <TextField id="txtHasta" fx:id="txtHasta" layoutX="297.0" layoutY="105.0" prefHeight="26.0" prefWidth="94.0" />
-      <Button id="btnSimular" fx:id="btnSimular" layoutX="509.0" layoutY="66.0" mnemonicParsing="false" onAction="#btnSimularClick" prefHeight="50.0" prefWidth="109.0" text="Simular">
+      <TextField id="txtHasta" fx:id="txtHasta" layoutX="836.0" layoutY="118.0" prefHeight="26.0" prefWidth="94.0" />
+      <Button id="btnSimular" fx:id="btnSimular" layoutX="985.0" layoutY="61.0" mnemonicParsing="false" onAction="#btnSimularClick" prefHeight="50.0" prefWidth="109.0" text="Simular">
         
       </Button>
       <TableView id="tablaVectorEstado" fx:id="tablaVectorEstado" layoutX="53.0" layoutY="195.0" prefHeight="404.0" prefWidth="1050.0">
@@ -70,8 +71,29 @@
       <Button id="btnCostoPromedio" fx:id="btnCostoPromedio" layoutX="289.0" layoutY="638.0" mnemonicParsing="false" onAction="#btnCostoPromedioClick" prefHeight="50.0" prefWidth="158.0" text="Costo promedio">
          
       </Button>
-      <Button id="btnBicisDañadas" fx:id="btnBicisDañadas" layoutX="637.0" layoutY="638.0" mnemonicParsing="false" onAction="#btnBicisDañadasClick" prefHeight="50.0" prefWidth="226.0" text="Porcentaje de bicis dañadas">
+      <Button id="btnBicisDañadas" fx:id="btnBicisDañadas" layoutX="637.0" layoutY="638.0" mnemonicParsing="false" onAction="#btnBicisDañadasClick" prefHeight="50.0" prefWidth="226.0" text="Cantidad de bicis dañadas">
          
       </Button>
+      <Pane layoutX="31.0" layoutY="25.0" prefHeight="158.0" prefWidth="459.0">
+         <children>
+            <Label layoutX="14.0" layoutY="6.0" text="Parámetros">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="31.0" text="Stock Inicial:" />
+            <Label layoutX="14.0" layoutY="62.0" text="Punto de reposición" />
+            <Label layoutX="14.0" layoutY="95.0" text="Unidades por reposición:" />
+            <Label layoutX="266.0" layoutY="31.0" text="Km (por unidad):" />
+            <Label layoutX="266.0" layoutY="62.0" text="Ks (por unidad):" />
+            <Label layoutX="266.0" layoutY="95.0" text="Ko (por órden):" />
+            <TextField fx:id="txtSo" layoutX="117.0" layoutY="27.0" prefHeight="26.0" prefWidth="118.0" text="7" />
+            <TextField fx:id="txtR" layoutX="146.0" layoutY="59.0" prefHeight="26.0" prefWidth="89.0" text="2" />
+            <TextField fx:id="txtQ" layoutX="176.0" layoutY="91.0" prefHeight="26.0" prefWidth="57.0" text="6" />
+            <TextField fx:id="txtKs" layoutX="375.0" layoutY="59.0" prefHeight="26.0" prefWidth="58.0" text="5" />
+            <TextField fx:id="txtKo" layoutX="371.0" layoutY="91.0" prefHeight="26.0" prefWidth="65.0" text="20" />
+         </children>
+      </Pane>
+      <TextField fx:id="txtKm" layoutX="406.0" layoutY="53.0" prefHeight="26.0" prefWidth="57.0" text="3" />
    </children>
 </AnchorPane>
